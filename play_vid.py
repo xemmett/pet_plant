@@ -9,6 +9,9 @@ cap = cv2.VideoCapture('emotion/happy/video.avi')
 if (cap.isOpened()== False):
 	print("Error opening video file")
 
+cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
+cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
 # Read until video is completed
 while(cap.isOpened()):
 	
