@@ -1,0 +1,1 @@
+"# pet_plant"  initgit add README.mdgit commit -m "first commit"git branch -M mastergit remote add origin git@github.com:xemmett/pet_plant.gitgit push -u origin master
