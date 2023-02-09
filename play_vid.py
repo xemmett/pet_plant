@@ -41,6 +41,14 @@ def play_video(emotion):
 	# the video capture object
 	cap.release()
 
+def read_temp_humid():
+	humidity, temperature = Adafruit_DHT.read_retry(11, 26)
+	return humidity, temperature
+
+def read_soil_moisture():
+	moisture = Adafruit_DHT.read_retry(11, 6)
+	return moisture
+
 def main():
 
 	emotions = ['happy', 'freeze', 'thirsty', 'hot', 'savory', 'sleepy']
@@ -49,16 +57,18 @@ def main():
 	# 	print(emotion)
 	emotion = 'happy'
 	while(1):
-		
-		play_video(emotion)
-		humidity, temperature = Adafruit_DHT.read_retry(11, 26)
+		_, temperature = read_temp_humid()
+		moisture = read_soil_moisture()
+		# play_video(emotion)
 		if(50 > temperature > 36):
 			emotion = 'happy'
 		elif(temperature > 50):
 			emotion = 'hot'
 		elif(36 > temperature):
 			emotion = 'freeze'
-		print(temperature, emotion)
+		# print(temperature, emotion)
+		print(moisture)
+
 
 	# Closes all the frames
 	cv2.destroyAllWindows()
