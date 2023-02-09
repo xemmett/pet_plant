@@ -47,8 +47,10 @@ def main():
 
 	# for emotion in emotions:
 	# 	print(emotion)
+	emotion = 'happy'
 	while(1):
-
+		
+		play_video(emotion)
 		humidity, temperature = Adafruit_DHT.read_retry(11, 26)
 		if(50 > temperature > 36):
 			emotion = 'happy'
@@ -56,7 +58,7 @@ def main():
 			emotion = 'hot'
 		elif(36 > temperature):
 			emotion = 'freeze'
-		play_video(emotion)
+		print(temperature, emotion)
 
 	# Closes all the frames
 	cv2.destroyAllWindows()
