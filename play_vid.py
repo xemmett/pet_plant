@@ -46,12 +46,10 @@ def read_temp_humid():
 	humidity, temperature = Adafruit_DHT.read_retry(11, 26)
 	return humidity, temperature
 
-def read_soil_moisture():
+def read_soil_moisture(current_emotion):
 	reading = GPIO.input(6)
-	if(reading):
-		return 'savory'
-	else:
-		return 'thirsty'
+	return reading
+	
 
 def init_soil_sensor():
 	GPIO.setmode(GPIO.BCM)
@@ -65,17 +63,23 @@ def main():
 	# 	print(emotion)
 	emotion = 'happy'
 	while(1):
-		# _, temperature = read_temp_humid()
-		emotion = read_soil_moisture()
+		_, temperature = read_temp_humid()
+		soil_moisture = read_soil_moisture()
+
+		if(soil_moisture == 0):
+			emotion = 'thirsty'
+
+		if(emotion == 'thirsty' and soil_moisture == 1):
+			emotion = 'savory'
+		
 		# play_video(emotion)
-		# if(50 > temperature > 36):
-		# 	emotion = 'happy'
-		# elif(temperature > 50):
-		# 	emotion = 'hot'
-		# elif(36 > temperature):
-			# emotion = 'freeze'
-		# print(temperature, emotion)
-		print(emotion)
+		if(50 > temperature > 36 and soil_moisture):
+			emotion = 'happy'
+		elif(temperature > 50 and soil_moisture):
+			emotion = 'hot'
+		elif(36 > temperature and soil_moisture):
+			emotion = 'freeze'
+		print(soil_moisture, temperature, emotion)
 
 
 	# Closes all the frames
