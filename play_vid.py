@@ -6,7 +6,7 @@ cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
 cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 # Create a VideoCapture object and read from input file
-cap = cv2.VideoCapture('emotion/thirsty/video.avi')
+cap = cv2.VideoCapture('emotion/happy/video.avi')
 
 # Check if camera opened successfully
 if (cap.isOpened()== False):

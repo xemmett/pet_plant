@@ -1,7 +1,7 @@
 import cv2
 import os
 
-image_folder = 'emotion/thirsty/'
+image_folder = 'emotion/sleepy/'
 video_name = f'{image_folder}video.avi'
 
 images = [img for img in os.listdir(image_folder) if img.endswith(".png")]
