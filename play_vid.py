@@ -47,8 +47,7 @@ def read_temp_humid():
 	return humidity, temperature
 
 def read_soil_moisture():
-	reading = GPIO.input(26)
-	print(reading)
+	reading = GPIO.input(6)
 	if(reading):
 		return 'savory'
 	else:
@@ -56,7 +55,7 @@ def read_soil_moisture():
 
 def init_soil_sensor():
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(26, GPIO.IN)
+	GPIO.setup(6, GPIO.IN)
 
 def main():
 	init_soil_sensor()
