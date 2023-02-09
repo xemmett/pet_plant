@@ -25,9 +25,10 @@ while(cap.isOpened()):
 		if cv2.waitKey(25) & 0xFF == ord('q'):
 			break
 
-# Break the loop
+# Loop video
 	else:
-		break
+		cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+		continue
 
 # When everything done, release
 # the video capture object
