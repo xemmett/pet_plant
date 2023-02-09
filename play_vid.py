@@ -49,7 +49,7 @@ def main():
 	# 	print(emotion)
 	while(1):
 
-		humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+		humidity, temperature = Adafruit_DHT.read_retry(11, 26)
 		if(50 > temperature > 36):
 			emotion = 'happy'
 		elif(temperature > 50):
