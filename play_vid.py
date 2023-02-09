@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # Create a VideoCapture object and read from input file
-cap = cv2.VideoCapture('emotion/happy/video.avi')
+cap = cv2.VideoCapture('emotion/thirsty/video.avi')
 
 # Check if camera opened successfully
 if (cap.isOpened()== False):
