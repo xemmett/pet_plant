@@ -66,7 +66,7 @@ def main():
 	while(1):
 		# _, temperature = read_temp_humid()
 		emotion = read_soil_moisture()
-		play_video(emotion)
+		# play_video(emotion)
 		# if(50 > temperature > 36):
 		# 	emotion = 'happy'
 		# elif(temperature > 50):
@@ -74,7 +74,7 @@ def main():
 		# elif(36 > temperature):
 			# emotion = 'freeze'
 		# print(temperature, emotion)
-		# print(emotion)
+		print(emotion)
 
 
 	# Closes all the frames
