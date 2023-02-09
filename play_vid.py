@@ -47,7 +47,9 @@ def read_temp_humid():
 	return humidity, temperature
 
 def read_soil_moisture():
-	if(GPIO.input(26)):
+	reading = GPIO.input(26)
+	print(reading)
+	if(reading):
 		return 'savory'
 	else:
 		return 'thirsty'
