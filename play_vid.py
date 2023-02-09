@@ -4,6 +4,7 @@ import numpy as np
 import sys
 import Adafruit_DHT
 import RPi.GPIO as GPIO
+from datetime import datetime
 
 cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
 cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
@@ -69,10 +70,12 @@ def main():
 		_, temperature = read_temp_humid()
 		soil_moisture = read_soil_moisture()
 
+		if(6 > datetime.now().hour > 20):
+			emotion = 'sleepy'
+
 		if(soil_moisture == 0):
 			emotion = 'thirsty'
-
-		if(emotion == 'thirsty' and soil_moisture == 1):
+		elif(emotion == 'thirsty' and soil_moisture == 1):
 			emotion = 'savory'
 		
 		play_video(emotion)
