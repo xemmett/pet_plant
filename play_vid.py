@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import sys
 import Adafruit_DHT
+import RPi.GPIO as GPIO
 
 cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
 cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
@@ -46,28 +47,34 @@ def read_temp_humid():
 	return humidity, temperature
 
 def read_soil_moisture():
-	moisture = Adafruit_DHT.read_retry(11, 6)
-	return moisture
+	if(GPIO.input(26)):
+		return 'savory'
+	else:
+		return 'thirsty'
+
+def init_soil_sensor():
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(26, GPIO.IN)
 
 def main():
-
+	init_soil_sensor()
 	emotions = ['happy', 'freeze', 'thirsty', 'hot', 'savory', 'sleepy']
 
 	# for emotion in emotions:
 	# 	print(emotion)
 	emotion = 'happy'
 	while(1):
-		_, temperature = read_temp_humid()
-		moisture = read_soil_moisture()
-		# play_video(emotion)
-		if(50 > temperature > 36):
-			emotion = 'happy'
-		elif(temperature > 50):
-			emotion = 'hot'
-		elif(36 > temperature):
-			emotion = 'freeze'
+		# _, temperature = read_temp_humid()
+		emotion = read_soil_moisture()
+		play_video(emotion)
+		# if(50 > temperature > 36):
+		# 	emotion = 'happy'
+		# elif(temperature > 50):
+		# 	emotion = 'hot'
+		# elif(36 > temperature):
+			# emotion = 'freeze'
 		# print(temperature, emotion)
-		print(moisture)
+		# print(emotion)
 
 
 	# Closes all the frames
