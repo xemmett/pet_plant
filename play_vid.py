@@ -72,12 +72,13 @@ def main():
 		if(emotion == 'thirsty' and soil_moisture == 1):
 			emotion = 'savory'
 		
-		# play_video(emotion)
-		if(50 > temperature > 36 and soil_moisture):
+		play_video(emotion)
+		
+		if(45 > temperature > 20 and soil_moisture):
 			emotion = 'happy'
 		elif(temperature > 50 and soil_moisture):
 			emotion = 'hot'
-		elif(36 > temperature and soil_moisture):
+		elif(20 > temperature and soil_moisture):
 			emotion = 'freeze'
 		print(soil_moisture, temperature, emotion)
 
