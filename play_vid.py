@@ -46,7 +46,7 @@ def read_temp_humid():
 	humidity, temperature = Adafruit_DHT.read_retry(11, 26)
 	return humidity, temperature
 
-def read_soil_moisture(current_emotion):
+def read_soil_moisture():
 	reading = GPIO.input(6)
 	return reading
 	
