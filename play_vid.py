@@ -9,6 +9,9 @@ cv2.namedWindow('Frame', cv2.WND_PROP_FULLSCREEN)
 cv2.setWindowProperty('Frame', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 interrupt = 0
+MIN_TEMP_THRESH = 13
+MAX_TEMP_THRESH = 22
+
 
 def play_video(emotion):
 	# Create a VideoCapture object and read from input file
@@ -73,15 +76,15 @@ def main():
 			emotion = 'savory'
 		
 		play_video(emotion)
-		
-		if(45 > temperature > 20 and soil_moisture):
+
+		if(MAX_TEMP_THRESH > temperature > MIN_TEMP_THRESH and soil_moisture):
 			emotion = 'happy'
-		elif(temperature > 50 and soil_moisture):
+		elif(temperature > MAX_TEMP_THRESH and soil_moisture):
 			emotion = 'hot'
-		elif(20 > temperature and soil_moisture):
+		elif(MIN_TEMP_THRESH > temperature and soil_moisture):
 			emotion = 'freeze'
 		print(soil_moisture, temperature, emotion)
-
+  
 
 	# Closes all the frames
 	cv2.destroyAllWindows()
